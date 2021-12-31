@@ -1,8 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, set, child, get } from 'firebase/database';
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-
 const _apiKey = process.env.REACT_APP_APIKEY;
 const _authDomain = process.env.REACT_APP_AUTHDOMAIN;
 const _databaseURL = process.env.REACT_APP_DATABASEURL;
@@ -37,7 +35,7 @@ function writeUserData(
     profile_picture: imageUrl,
   });
 }
-writeUserData('123', 'Raoni', 'raoni.itar@gmail.com', 'imageAleatoria.png');
+writeUserData('----', '----', '----', '----');
 
 const bdRef = ref(db);
 get(child(bdRef, 'users/12321d1223'))
