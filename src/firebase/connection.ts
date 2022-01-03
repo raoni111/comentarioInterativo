@@ -20,28 +20,27 @@ const firebaseConfig = {
   appId: _appId,
   measurementId: _measurementId,
 };
-
 const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
-function writeUserData(
-  userId: string,
-  name: string,
-  email: string,
-  imageUrl: string,
-): void {
-  set(ref(db, 'users/' + userId), {
-    username: name,
-    email: email,
-    profile_picture: imageUrl,
-  });
-}
-writeUserData('----', '----', '----', '----');
+export const db = getDatabase(app);
+// function writeUserData(
+//   userId: string,
+//   name: string,
+//   email: string,
+//   imageUrl: string,
+// ): void {
+//   set(ref(db, 'users/' + userId), {
+//     username: name,
+//     email: email,
+//     profile_picture: imageUrl,
+//   });
+// }
+//writeUserData('----', '----', '----', '----');
 
-const bdRef = ref(db);
-get(child(bdRef, 'users/12321d1223'))
-  .then((response) => {
-    console.log(response.val());
-  })
-  .catch((error) => {
-    console.log(error);
-  });
+//const bdRef = ref(db);
+// get(child(bdRef, 'users/12321d1223'))
+//   .then((response) => {
+//     console.log(response.val());
+//   })
+//   .catch((error) => {
+//     console.log(error);
+//   });
