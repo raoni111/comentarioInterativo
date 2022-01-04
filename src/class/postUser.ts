@@ -5,6 +5,6 @@ import CreateUserProtocol from './interface/create-user-protocol';
 export class PostUser {
   constructor(protected user: CreateUserProtocol) {}
   post(): void {
-    set(ref(db, 'users/' + this.user.userName), this.user);
+    set(ref(db, 'users/' + this.user.userId), this.user);
   }
 }

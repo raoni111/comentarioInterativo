@@ -51,18 +51,21 @@
   width: 100%;
 }
 .login-elemento .login-content .header-login-content h1 {
+  width: 100%;
+  text-align: center;
   font-size: 2rem;
-  margin-bottom: 2rem;
   color: var(--azul-claro);
 }
-.login-elemento .login-content .form {
+.login-elemento .login-content .form  {
   width: 100%;
+  margin-top: 2rem;
 }
 .login-elemento .login-content .form div:nth-child(1) {
   margin-top: 0rem;
 }
 .login-elemento .login-content .form div {
   margin-top: 1.0rem;
+  width: 100%;
 }
 .login-elemento .login-content .form div .input-content {
   width: 100%;
@@ -72,7 +75,7 @@
   border-radius: 2px;
   transition: all .2s ease-in-out;
 }
-.login-elemento .login-content div input:focus {
+.login-elemento .login-content .form div input:focus {
   transform: scale(1.05);
 }
 .login-elemento .login-content .checkbox-content {

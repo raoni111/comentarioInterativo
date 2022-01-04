@@ -3,4 +3,5 @@ export default interface CreateUserProtocol {
   name: string;
   email: string;
   password: string;
+  userId: string;
 }
