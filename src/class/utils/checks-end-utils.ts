@@ -43,8 +43,7 @@ export default class Utils {
     onValue(userIdRef, (snepshot) => {
       const userIdExist = snepshot.exists();
       if (userIdExist) {
-        this.createUserId();
-        return;
+        return this.createUserId();
       }
     });
     return userId;
