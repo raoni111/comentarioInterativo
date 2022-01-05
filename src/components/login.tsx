@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import ValidFormLogin from '../class/valid-form-login';
+import { login } from '../class/login';
 import './style/login-style.css';
+import Utils from '../class/utils/checks-end-utils';
 
 export default function Login(): JSX.Element {
   const [inputIsVisible, setInputIsVisible] = useState(false);
@@ -12,10 +14,17 @@ export default function Login(): JSX.Element {
     const validFormLogin = new ValidFormLogin(userName, password);
     return validFormLogin.checkout();
   }
-  function logIntoTheAccount(): void {
+  async function logIntoTheAccount(): Promise<void> {
     const userName = document.getElementById('name-user') as HTMLInputElement;
     const password = document.getElementById('password') as HTMLInputElement;
     if (!validForm(userName, password)) {
+      return;
+    }
+    await login.login(userName.value, password.value).then((response) => {
+      login.logged = response;
+    });
+    if (!login.logged) {
+      Utils.displayError('nome de usurio ou senha incorreto', password);
       return;
     }
   }

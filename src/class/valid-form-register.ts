@@ -2,7 +2,7 @@ import { ValidFormProtocol } from './interface/valid-form-protocol';
 import isEmail from 'validator/lib/isEmail';
 
 // firebase
-import { onValue, ref } from 'firebase/database';
+import { get, ref } from 'firebase/database';
 import { db } from '../firebase/connection';
 
 // utils
@@ -50,10 +50,10 @@ export class ValidFormRegister implements ValidFormProtocol {
     }
     return this.errors > 0 ? false : true;
   }
-  userExists(user: HTMLInputElement): void {
+  async userExists(user: HTMLInputElement): Promise<void> {
     const userRef = ref(db, 'users/');
-    onValue(userRef, (snapshot) => {
-      const users = snapshot.val();
+    await get(userRef).then((response) => {
+      const users = response.val();
       for (const kay in users) {
         if (user.value === users[kay].userName) {
           Utils.displayError('nome de usuario ja existe', user);

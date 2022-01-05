@@ -1,5 +1,6 @@
 import React from 'react';
-//import Login from './components/login';
+import Home from './components/home';
+import Login from './components/login';
 import Register from './components/register';
 import './firebase/connection';
 

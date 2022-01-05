@@ -49,6 +49,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
+  margin-bottom: 3rem;
 }
 .login-elemento .login-content .header-login-content h1 {
   width: 100%;

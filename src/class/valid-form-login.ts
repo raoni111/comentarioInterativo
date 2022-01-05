@@ -1,16 +1,17 @@
+import { ValidFormLoginProtocol } from './interface/valid-form-protocol';
 import Utils from './utils/checks-end-utils';
-export default class ValidFormLogin {
+export default class ValidFormLogin implements ValidFormLoginProtocol {
   protected errors = 0;
   constructor(
-    public nameUser: HTMLInputElement,
-    public passward: HTMLInputElement,
+    public userName: HTMLInputElement,
+    public password: HTMLInputElement,
   ) {}
 
   checkout(): boolean {
-    if (!Utils.validLength(this.nameUser.value)) {
+    if (!Utils.validLength(this.userName.value)) {
       Utils.displayError(
         'nome de usuario precisa ter no minimo 8 caracteres',
-        this.nameUser,
+        this.userName,
       );
       this.errors++;
     }
