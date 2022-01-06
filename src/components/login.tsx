@@ -1,33 +1,10 @@
 import React, { useState } from 'react';
-import ValidFormLogin from '../class/valid-form-login';
-import { login } from '../class/login';
 import './style/login-style.css';
-import Utils from '../class/utils/checks-end-utils';
+import logIntoAccount from '../services/logIntoAccount';
 
 export default function Login(): JSX.Element {
   const [inputIsVisible, setInputIsVisible] = useState(false);
 
-  function validForm(
-    userName: HTMLInputElement,
-    password: HTMLInputElement,
-  ): boolean {
-    const validFormLogin = new ValidFormLogin(userName, password);
-    return validFormLogin.checkout();
-  }
-  async function logIntoTheAccount(): Promise<void> {
-    const userName = document.getElementById('name-user') as HTMLInputElement;
-    const password = document.getElementById('password') as HTMLInputElement;
-    if (!validForm(userName, password)) {
-      return;
-    }
-    await login.login(userName.value, password.value).then((response) => {
-      login.logged = response;
-    });
-    if (!login.logged) {
-      Utils.displayError('nome de usurio ou senha incorreto', password);
-      return;
-    }
-  }
   function inputVisibility(checkElement: HTMLInputElement): void {
     const boolean = checkElement.checked;
     setInputIsVisible(boolean);
@@ -69,7 +46,7 @@ export default function Login(): JSX.Element {
             <label htmlFor="input-visibility">Mastrar senha?</label>
           </div>
           <div className="button-contnet">
-            <button type="submit" onClick={() => logIntoTheAccount()}>
+            <button type="submit" onClick={() => logIntoAccount()}>
               entrar
             </button>
           </div>

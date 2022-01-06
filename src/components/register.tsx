@@ -7,13 +7,13 @@ import './style/register-style.css';
 export default function Register(): JSX.Element {
   const [inputIsVisible, setInputIsVisible] = useState(false);
 
-  function validForm(
+  async function validForm(
     userName: HTMLInputElement,
     name: HTMLInputElement,
     email: HTMLInputElement,
     password: HTMLInputElement,
     passwordTwo: HTMLInputElement,
-  ): boolean {
+  ): Promise<boolean> {
     const validForm = new ValidFormRegister(
       userName,
       name,
@@ -21,9 +21,13 @@ export default function Register(): JSX.Element {
       password,
       passwordTwo,
     );
-    return validForm.checkout();
+    let formIsValid = false;
+    await validForm.checkout().then((response) => {
+      formIsValid = response;
+    });
+    return formIsValid;
   }
-  function createAnAccount(): void {
+  async function createAnAccount(): Promise<void> {
     const userName = document.getElementById('name-user') as HTMLInputElement;
     const name = document.getElementById('name') as HTMLInputElement;
     const email = document.getElementById('email') as HTMLInputElement;
@@ -31,7 +35,13 @@ export default function Register(): JSX.Element {
     const passwordTwo = document.getElementById(
       'password-two',
     ) as HTMLInputElement;
-    if (!validForm(userName, name, email, password, passwordTwo)) {
+    let _continue = false;
+    await validForm(userName, name, email, password, passwordTwo).then(
+      (response) => {
+        _continue = response;
+      },
+    );
+    if (!_continue) {
       return;
     }
     const user = new CreateUser(

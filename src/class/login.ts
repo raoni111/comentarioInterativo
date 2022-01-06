@@ -3,10 +3,10 @@ import { ref, get } from 'firebase/database';
 import { db } from '../firebase/connection';
 import bcrypt from 'bcryptjs';
 
-export class Login implements LoginProtocol {
+export default class Login implements LoginProtocol {
   public logged = false;
   protected _infoUser: any;
-  async login(userName: string, password: string): Promise<boolean> {
+  async logIn(userName: string, password: string): Promise<boolean> {
     let data: any;
     const userRef = ref(db, 'users/');
     await get(userRef).then((response) => {
@@ -16,6 +16,7 @@ export class Login implements LoginProtocol {
       if (data[key].userName === userName) {
         if (this.verifyPassword(password, data[key].password)) {
           this._infoUser = {
+            date: data[key].date,
             userId: data[key].userId,
             userName: data[key].userName,
             name: data[key].name,
@@ -33,7 +34,7 @@ export class Login implements LoginProtocol {
     return this.logged;
   }
 
-  get infoUser(): Readonly<any> {
+  get infoUser(): Readonly<unknown> {
     return this._infoUser;
   }
 
@@ -41,5 +42,3 @@ export class Login implements LoginProtocol {
     return bcrypt.compareSync(passwordClient, passwordDb);
   }
 }
-
-export const login = new Login();

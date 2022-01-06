@@ -1,6 +1,6 @@
 interface FuncValidFormProtocol {
   checkout: () => void;
-  userExists?: (user: HTMLInputElement) => void;
+  userExists?: (user: HTMLInputElement) => Promise<void>;
 }
 export interface ValidFormLoginProtocol extends FuncValidFormProtocol {
   userName: HTMLInputElement;

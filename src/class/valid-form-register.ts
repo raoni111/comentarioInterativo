@@ -17,7 +17,7 @@ export class ValidFormRegister implements ValidFormProtocol {
     public password: HTMLInputElement,
     public passwordTwo: HTMLInputElement,
   ) {}
-  checkout(): boolean {
+  async checkout(): Promise<boolean> {
     this.errors = 0;
 
     if (!Utils.validLength(this.userName.value)) {
@@ -27,7 +27,7 @@ export class ValidFormRegister implements ValidFormProtocol {
       );
       this.errors++;
     }
-    this.userExists(this.userName);
+    await this.userExists(this.userName);
     if (!Utils.validLength(this.name.value)) {
       Utils.displayError('nome  precisa ter no minimo 8 caracteres', this.name);
       this.errors++;
