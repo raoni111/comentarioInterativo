@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { CreateUser } from '../class/create-user';
 import { PostUser } from '../class/postUser';
 import { ValidFormRegister } from '../class/valid-form-register';
-import './style/register-style.css';
+import '../assets/style/register-style.css';
 
 export default function Register(): JSX.Element {
   const [inputIsVisible, setInputIsVisible] = useState(false);
@@ -52,6 +52,7 @@ export default function Register(): JSX.Element {
     );
     const postUser = new PostUser(user);
     postUser.post();
+    document.location = '/login';
   }
   function inputVisibility(checkElement: HTMLInputElement): void {
     const boolean = checkElement.checked;

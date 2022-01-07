@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './style/login-style.css';
+import './../assets/style/login-style.css';
 import logIntoAccount from '../services/logIntoAccount';
 
 export default function Login(): JSX.Element {
@@ -12,7 +12,7 @@ export default function Login(): JSX.Element {
   return (
     <div className="login-elemento">
       <div className="login-content">
-        <div className="header-login-content">
+        <div className="header-register-content">
           <h1>Entre para postar um comentário</h1>
         </div>
         <div className="form">

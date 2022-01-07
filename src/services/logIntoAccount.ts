@@ -3,7 +3,7 @@ import Login from '../class/login';
 import Utils from '../class/utils/checks-end-utils';
 import validForm from './validForm';
 
-export default async function logIntoAccount() {
+export default async function logIntoAccount(): Promise<void> {
   const userName = document.getElementById('name-user') as HTMLInputElement;
   const password = document.getElementById('password') as HTMLInputElement;
   const login = new Login();
@@ -18,6 +18,6 @@ export default async function logIntoAccount() {
     return;
   }
   // 10080
-  lscache.set('user', login.infoUser, 2);
+  lscache.set('user', login.infoUser, 30);
   document.location = '/';
 }

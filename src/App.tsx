@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Home from './components/home';
-import Login from './components/login';
-import Register from './components/register';
+import Home from './pages/home';
+import Login from './pages/login';
+import Register from './pages/register';
 import './firebase/connection';
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
           <Route exact path="/login">
             <Login />
           </Route>
-          <Route exact path="/resgister">
+          <Route exact path="/register">
             <Register />
           </Route>
         </Switch>

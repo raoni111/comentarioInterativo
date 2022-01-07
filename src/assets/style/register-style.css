@@ -23,7 +23,7 @@
   width: 100%;
   height: 100vh;
   content: '';
-  background-image: url('./../../img/istockphoto-1219064440-1024x1024.jpg');
+  background-image: url('../img/istockphoto-1219064440-1024x1024.jpg');
   background-position: center;
   background-repeat: repeat;
   background-size: 20%;
@@ -44,15 +44,16 @@
   background-color: white;
   z-index: 1;
 }
-.login-elemento .login-content .header-login-content {
+.login-elemento .login-content .header-register-content {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0;
   width: 100%;
 }
-.login-elemento .login-content .header-login-content h1 {
+.login-elemento .login-content .header-register-content h1 {
   font-size: 2rem;
-  margin-bottom: 2rem;
+  text-align: center;
   color: var(--azul-claro);
 }
 .login-elemento .login-content .form {

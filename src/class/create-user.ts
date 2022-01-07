@@ -23,7 +23,6 @@ export class CreateUser implements CreateUserProtocol {
     this.date = {
       localDateString: data.toLocaleDateString('pt-BR', { timeZone: 'UTC' }),
       localTimeString: data.toLocaleTimeString('pt-BR', {
-        timeZone: 'UTC',
         timeStyle: 'short',
       }),
     };

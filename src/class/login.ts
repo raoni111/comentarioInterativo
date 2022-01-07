@@ -16,6 +16,7 @@ export default class Login implements LoginProtocol {
       if (data[key].userName === userName) {
         if (this.verifyPassword(password, data[key].password)) {
           this._infoUser = {
+            avatarUrl: data[key].avatarUrl,
             date: data[key].date,
             userId: data[key].userId,
             userName: data[key].userName,
