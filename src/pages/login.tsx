@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import './../assets/style/login-style.css';
 import logIntoAccount from '../services/logIntoAccount';
 
+import { HiLockClosed } from 'react-icons/hi';
+import { FaUser } from 'react-icons/fa';
+
 export default function Login(): JSX.Element {
   const [inputIsVisible, setInputIsVisible] = useState(false);
 
@@ -17,24 +20,30 @@ export default function Login(): JSX.Element {
         </div>
         <div className="form">
           <div className="user-name-content">
-            <input
-              type="text"
-              className="input-content"
-              name="name-user"
-              id="name-user"
-              placeholder="nome de usuário"
-              autoComplete="off"
-            />
+            <div>
+              <FaUser size="17" />
+              <input
+                type="text"
+                className="input-content"
+                name="name-user"
+                id="name-user"
+                placeholder="nome de usuário"
+                autoComplete="off"
+              />
+            </div>
           </div>
           <div className="password-content">
-            <input
-              type={inputIsVisible ? 'text' : 'password'}
-              className="input-content"
-              name="password"
-              id="password"
-              placeholder="senha"
-              autoComplete="off"
-            />
+            <div>
+              <HiLockClosed size="20" />
+              <input
+                type={inputIsVisible ? 'text' : 'password'}
+                className="input-content"
+                name="password"
+                id="password"
+                placeholder="senha"
+                autoComplete="off"
+              />
+            </div>
           </div>
           <div className="checkbox-content">
             <input
@@ -47,7 +56,7 @@ export default function Login(): JSX.Element {
           </div>
           <div className="button-contnet">
             <button type="submit" onClick={() => logIntoAccount()}>
-              entrar
+              Entrar
             </button>
           </div>
         </div>

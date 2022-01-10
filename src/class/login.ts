@@ -1,6 +1,6 @@
 import { LoginProtocol } from './interface/login-protocol';
 import { ref, get } from 'firebase/database';
-import { db } from '../firebase/connection';
+import { db } from '../.firebase/connection';
 import bcrypt from 'bcryptjs';
 
 export default class Login implements LoginProtocol {

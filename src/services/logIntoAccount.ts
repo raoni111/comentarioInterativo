@@ -1,7 +1,7 @@
 import lscache from 'lscache';
 import Login from '../class/login';
 import Utils from '../class/utils/checks-end-utils';
-import validForm from './validForm';
+import validForm from '../class/utils/validForm';
 
 export default async function logIntoAccount(): Promise<void> {
   const userName = document.getElementById('name-user') as HTMLInputElement;
@@ -14,7 +14,7 @@ export default async function logIntoAccount(): Promise<void> {
     login.logged = response;
   });
   if (!login.logged) {
-    Utils.displayError('nome de usurio ou senha incorreto', password);
+    Utils.displayError('nome de usuario ou senha incorreto', password);
     return;
   }
   // 10080

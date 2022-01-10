@@ -1,4 +1,4 @@
-import { db } from '../firebase/connection';
+import { db } from '../.firebase/connection';
 import { ref, set } from 'firebase/database';
 import CreateUserProtocol from './interface/create-user-protocol';
 

@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './pages/home';
 import Login from './pages/login';
 import Register from './pages/register';
-import './firebase/connection';
+import Configuration from './pages/configuration';
+import './.firebase/connection';
 
 function App() {
   return (
@@ -18,6 +19,9 @@ function App() {
           </Route>
           <Route exact path="/register">
             <Register />
+          </Route>
+          <Route exact path="/configuration/">
+            <Configuration />
           </Route>
         </Switch>
       </Router>

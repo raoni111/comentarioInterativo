@@ -1,0 +1,123 @@
+:root {
+  --cor-primaria: rgb(16, 20, 22);
+  --cinza-escuro: rgb(148, 148, 148);
+}
+.error {
+  color: red;
+  font-size: 1.2rem;
+}
+.configuration-component {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--cor-primaria);
+  z-index: 0;
+}
+.configuration-component::after {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  height: 100vh;
+  content: ' ';
+  background-image: url('../img/istockphoto-1219064440-1024x1024.jpg');
+  background-position: center;
+  background-repeat: repeat;
+  background-size: 20%;
+  opacity: 0.1;
+  z-index: 0;
+}
+.configuration-component .button-back-content {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1;
+}
+.configuration-component .button-back-content button {
+  padding: 1rem 2rem 1rem;
+  opacity: 1;
+}
+.configuration-component .button-back-content a button {
+  color: var(--cor-primaria);
+  border-radius: 5px;
+  border: 0;
+  transition: all .1s ease-in-out;
+}
+.configuration-component .button-back-content a:hover button{
+  background-color: var(--cor-primaria);
+  color: white;
+  transform: scale(1.1);
+}
+.configuration-component .button-back-content a:active button {
+  transform: scale(1);
+}
+.configuration-component .configuration-content {
+  width: 30%;
+  height: 80vh;
+  border-radius: 5px;
+  background-color: white;
+  z-index: 1;
+}
+.configuration-component .configuration-content .content-one {
+  display: flex;
+  justify-content: start;
+}
+.configuration-component .configuration-content .content-one h1 {
+  font-size: 1.8rem;
+  font-weight: 500;
+  padding: 1.2rem;
+}
+.configuration-component .configuration-content .form-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  margin: 3rem 6rem 3rem;
+}
+.configuration-component .configuration-content .form-content div {
+  margin-bottom: 2rem;
+}
+.configuration-component .configuration-content .form-content div label {
+  font-size: 1.5rem;
+}
+.configuration-component .configuration-content .form-content div div {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0.5rem 1rem 0.5rem;
+  border-radius: 5px;
+  border: 1px solid var(--cinza-escuro);
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.configuration-component .configuration-content .form-content div div input {
+  margin-top: 0rem;
+  padding: .5rem;
+  border: none;
+  border-radius: 2px;
+}
+.configuration-component .configuration-content .form-content .save-button-content {
+  display: flex;
+  justify-content: start;
+  width: 100%;
+}
+.configuration-component .configuration-content .form-content .save-button-content button {
+  padding: 0.5rem 1rem 0.5rem;
+  border: 1px solid var(--cor-primaria);
+  border-radius: 5px;
+  background-color: transparent;
+  transition: all .2s ease-in-out;
+}
+.configuration-component .configuration-content .form-content .save-button-content button:hover {
+  background-color: var(--cor-primaria);
+  color: white;
+  transform: scale(1.1);
+}
+.configuration-component .configuration-content .form-content .save-button-content button:active {
+  transform: scale(1);
+}

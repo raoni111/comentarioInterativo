@@ -24,7 +24,6 @@ const firebaseConfig = {
 };
 const app = initializeApp(firebaseConfig);
 export const db = getDatabase(app);
-
 //https://firebasestorage.googleapis.com/v0/b/comentario-interativo.appspot.com/o/vatar%2FSlice%201.png?alt=media&token=d65dc85c-ae59-43d7-acc5-41b8c0a2a687
 //https://firebasestorage.googleapis.com/v0/b/comentario-interativo.appspot.com/o/vatar%2FSlice%204.png?alt=media&token=8be09ece-8c7f-46fa-8bd5-c5222e6e07a4
 // function writeUserData(

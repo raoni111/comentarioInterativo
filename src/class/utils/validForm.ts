@@ -1,4 +1,4 @@
-import ValidFormLogin from '../class/valid-form-login';
+import ValidFormLogin from '../valid-form-login';
 export default function validForm(
   userName: HTMLInputElement,
   password: HTMLInputElement,

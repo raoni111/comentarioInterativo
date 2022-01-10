@@ -10,6 +10,7 @@ import {
 } from 'react-icons/bs';
 
 import './style/header-style.css';
+import { userInfo } from 'os';
 
 interface Props {
   user: any;
@@ -56,10 +57,12 @@ export default function Header(props: Props): JSX.Element {
             id={closeComponent ? 'close-true' : 'close-false'}
           >
             <ul>
-              <li>
-                <BsFillGearFill size="17" />
-                <a href="">Configuração</a>
-              </li>
+              <Link to={'configuration?userName=' + props.user.userName}>
+                <li>
+                  <BsFillGearFill size="17" />
+                  <div>Configuração</div>
+                </li>
+              </Link>
               <li onClick={() => exitTheAccount('user')}>
                 <BsBoxArrowInRight size="18" color="red" />
                 <a>Sair</a>

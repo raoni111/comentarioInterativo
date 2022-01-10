@@ -1,11 +1,10 @@
 :root {
   --cinza-claro: rgb(221, 221, 221);
   --cinza-escuro: rgb(148, 148, 148);
-  --azul-claro: rgb(0, 183, 255);
+  --cor-primaria: rgb(16, 20, 22);
 }
 .error {
   color: red;
-  transition: all .2s ease-in-out;
 }
 .login-elemento {
   position: relative;
@@ -15,7 +14,7 @@
   position: absolute;
   width: 100%;
   height: 100vh;
-  background-color: var(--azul-claro);
+  background-color: var(--cor-primaria);
 }
 .login-elemento::after {
   position: absolute;
@@ -37,7 +36,7 @@
   justify-content: center;
   align-items: start;
   width: 300px;
-  height: 400px;
+  height: auto;
   padding: 5rem;
   border-radius: 10px;
   box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.315);
@@ -65,16 +64,13 @@
 .login-elemento .login-content .form div {
   margin-top: 1.0rem;
 }
-.login-elemento .login-content .form div .input-content {
+.login-elemento .login-content .form div div .input-content {
   width: 100%;
-  margin-top: 0.5rem;
-  padding: 0.5rem;
-  border: 1px solid rgba(0, 0, 0, 0.253);
+  margin-top: 0;
+  padding: 0.5rem 0rem 0.5rem;
   border-radius: 2px;
+  transform: none;
   transition: all .2s ease-in-out;
-}
-.login-elemento .login-content div input:focus {
-  transform: scale(1.05);
 }
 .login-elemento .login-content .checkbox-content {
   display: flex;
@@ -100,7 +96,7 @@
 .login-elemento .login-content .button-contnet button {
   width: 100%;
   padding: .8rem;
-  border: 2px solid var(--azul-claro);
+  border: 2px solid var(--cor-primaria);
   font-size: 1.3rem;
   color: black;
   border-radius: 5px;
@@ -109,7 +105,7 @@
 }
 .login-elemento .login-content .button-contnet button:hover {
   color:white;
-  background-color: var(--azul-claro);
+  background-color: var(--cor-primaria);
 }
 .login-elemento .login-content .button-contnet button:active {
   transform: scale(.95);

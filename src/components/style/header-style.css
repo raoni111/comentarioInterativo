@@ -1,5 +1,6 @@
 :root {
   --shadow-color: rgba(0, 0, 0, 0.137);
+  --cinza-hover: rgba(231, 231, 231, 0.856);
 }
 .header-component {
   display: flex;
@@ -70,14 +71,35 @@
   align-items: center;
   transition: all .2s ease-in-out;
 }
-.header-component .header-content-logged .option-count#close-false ul li {
+.header-component .header-content-logged .option-count ul a {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  transition: all .2s ease-in-out;
+}
+.header-component .header-content-logged .option-count#close-false ul li:nth-child(2) {
+  cursor: pointer;
+  padding: 1.5rem 2rem 1.5rem;
+}
+.header-component .header-content-logged .option-count#close-false ul a:nth-child(1) {
   cursor: pointer;
   padding: 1.5rem 2rem 1.5rem;
 }
 .header-component .header-content-logged .option-count#close-false ul li:hover {
-  background-color: rgba(231, 231, 231, 0.856);
+  background-color: var(--cinza-hover);
+}
+.header-component .header-content-logged .option-count#close-false ul a:hover {
+  background-color: var(--cinza-hover);
 }
 .header-component .header-content-logged .option-count ul li a {
+  margin-left: 1rem;
+  font-size: 1.5rem;
+  color: black;
+}
+.header-component .header-content-logged .option-count ul a li {
+  color: black
+}
+.header-component .header-content-logged .option-count ul a li div {
   margin-left: 1rem;
   font-size: 1.5rem;
   color: black;

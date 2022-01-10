@@ -4,6 +4,9 @@ import { PostUser } from '../class/postUser';
 import { ValidFormRegister } from '../class/valid-form-register';
 import '../assets/style/register-style.css';
 
+import { HiLockClosed } from 'react-icons/hi';
+import { FaUser } from 'react-icons/fa';
+import { MdEmail } from 'react-icons/md';
 export default function Register(): JSX.Element {
   const [inputIsVisible, setInputIsVisible] = useState(false);
 
@@ -66,54 +69,69 @@ export default function Register(): JSX.Element {
         </div>
         <div className="form">
           <div className="user-name-content">
-            <input
-              className="input-content"
-              type="text"
-              name="name-user"
-              id="name-user"
-              placeholder="nome de usuário"
-              autoComplete="off"
-            />
+            <div>
+              <FaUser size="15" />
+              <input
+                className="input-content"
+                type="text"
+                name="name-user"
+                id="name-user"
+                placeholder="nome de usuário"
+                autoComplete="off"
+              />
+            </div>
           </div>
           <div className="name-content">
-            <input
-              className="input-content"
-              type="text"
-              name="name"
-              id="name"
-              placeholder="name"
-              autoComplete="off"
-            />
+            <div>
+              <FaUser size="15" />
+              <input
+                className="input-content"
+                type="text"
+                name="name"
+                id="name"
+                placeholder="name"
+                autoComplete="off"
+              />
+            </div>
           </div>
           <div className="email-content">
-            <input
-              className="input-content"
-              type="email"
-              name="email"
-              id="email"
-              placeholder="email"
-              autoComplete="off"
-            />
+            <div>
+              <MdEmail size="20" />
+              <input
+                className="input-content"
+                type="email"
+                name="email"
+                id="email"
+                placeholder="email"
+                autoComplete="off"
+              />
+            </div>
           </div>
           <div className="password-content">
-            <input
-              className="input-content"
-              type={inputIsVisible ? 'text' : 'password'}
-              name="password"
-              id="password"
-              placeholder="senha"
-              autoComplete="off"
-            />
+            <div>
+              <HiLockClosed size="20" />
+              <input
+                className="input-content"
+                type={inputIsVisible ? 'text' : 'password'}
+                name="password"
+                id="password"
+                placeholder="senha"
+                autoComplete="off"
+              />
+            </div>
           </div>
           <div className="password-two-content">
-            <input
-              className="input-content"
-              type={inputIsVisible ? 'text' : 'password'}
-              name="password-two"
-              id="password-two"
-              placeholder="repita a senha"
-              autoComplete="off"
-            />
+            <div>
+              <HiLockClosed size="20" />
+              <input
+                className="input-content"
+                type={inputIsVisible ? 'text' : 'password'}
+                name="password-two"
+                id="password-two"
+                placeholder="repita a senha"
+                autoComplete="off"
+              />
+            </div>
           </div>
           <div className="checkbox-content">
             <input

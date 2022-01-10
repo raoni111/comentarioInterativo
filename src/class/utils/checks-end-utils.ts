@@ -1,4 +1,4 @@
-import { db } from '../../firebase/connection';
+import { db } from '../../.firebase/connection';
 import { ref, onValue } from 'firebase/database';
 
 export default class Utils {
@@ -17,15 +17,18 @@ export default class Utils {
   static displayError(error: string, element: HTMLInputElement): void {
     const p = document.createElement('p');
     const parentElement = element.parentElement as HTMLDivElement;
-    if (parentElement.textContent) {
+    const parentTwo = parentElement.parentElement as HTMLDivElement;
+    const verifyErrorELement = document.getElementById('error');
+    if (document.body.contains(verifyErrorELement)) {
       return;
     }
     p.classList.add('error');
+    p.id = 'error';
     p.textContent = error;
-    parentElement.appendChild(p);
+    parentTwo.appendChild(p);
 
     setTimeout(() => {
-      parentElement.removeChild(p);
+      parentTwo.removeChild(p);
     }, 2000);
   }
   static randomNumber(min: number, max: number): number {
