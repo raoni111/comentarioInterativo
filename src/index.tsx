@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import './.firebase/connection';
+import './db/connection';
+import './services/get-message';
 ReactDOM.render(
   <React.StrictMode>
     <App />

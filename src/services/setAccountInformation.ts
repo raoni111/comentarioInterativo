@@ -1,5 +1,5 @@
 import { set, ref } from 'firebase/database';
-import { db } from '../.firebase/connection';
+import { db } from '../db/connection';
 import lscache from 'lscache';
 
 export default async function setAccountInformation(

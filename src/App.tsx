@@ -4,7 +4,7 @@ import Home from './pages/home';
 import Login from './pages/login';
 import Register from './pages/register';
 import Configuration from './pages/configuration';
-import './.firebase/connection';
+import './db/connection';
 
 function App() {
   return (

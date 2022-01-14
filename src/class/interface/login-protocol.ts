@@ -1,6 +1,5 @@
 interface FuncLoginProtocol {
   logIn: (userName: string, password: string) => Promise<boolean>;
-  verifyPassword: (passwordClient: string, passwordDb: string) => boolean;
 }
 
 export interface LoginProtocol extends FuncLoginProtocol {

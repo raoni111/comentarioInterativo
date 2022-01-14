@@ -3,7 +3,7 @@ import isEmail from 'validator/lib/isEmail';
 
 // firebase
 import { get, ref } from 'firebase/database';
-import { db } from '../.firebase/connection';
+import { db } from '../db/connection';
 
 // utils
 import Utils from './utils/checks-end-utils';

@@ -21,3 +21,33 @@
   opacity: 0.1;
   z-index: -1;
 }
+.home-component .error-component {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  background-color: rgb(255, 255, 255);
+}
+.home-component .error-component  .error-content {
+  padding: 5rem;
+  background-color: white;
+  border-radius: 10px;
+}
+.home-component .error-component  .error-content h1 {
+  display: flex;
+  align-items: center;
+}
+.home-component .error-component  .error-content h1 .icon-alert {
+  margin-right: 1rem;
+}
+.home-component .error-component#display-error-false {
+  display: none;
+}
+.home-component .error-component#display-error-true {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,20 +1,15 @@
-import { db } from '../../.firebase/connection';
-import { ref, onValue } from 'firebase/database';
+import bcrypt from 'bcryptjs';
+import { onValue, ref } from 'firebase/database';
+import { db } from '../../db/connection';
 
-export default class Utils {
-  static validLength(name: string): boolean {
-    if (name.length < 8) {
-      return false;
-    }
-    return true;
-  }
-  static validPassword<T = string>(password: T, passwordTwo: T): boolean {
-    if (password === passwordTwo) {
-      return true;
-    }
-    return false;
-  }
-  static displayError(error: string, element: HTMLInputElement): void {
+const Utils = {
+  validLength(name: string): boolean {
+    return name.length < 8 ? false : true;
+  },
+  validPassword<T = string>(password: T, passwordTwo: T): boolean {
+    return password === passwordTwo;
+  },
+  displayError(error: string, element: HTMLInputElement): void {
     const p = document.createElement('p');
     const parentElement = element.parentElement as HTMLDivElement;
     const parentTwo = parentElement.parentElement as HTMLDivElement;
@@ -30,11 +25,11 @@ export default class Utils {
     setTimeout(() => {
       parentTwo.removeChild(p);
     }, 2000);
-  }
-  static randomNumber(min: number, max: number): number {
+  },
+  randomNumber(min: number, max: number): number {
     return Math.floor(Math.random() * (max - min) + min);
-  }
-  static createUserId(): string {
+  },
+  createUserId(): string {
     const caracteres = `1234567890QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm`;
     const userId =
       caracteres[Utils.randomNumber(0, caracteres.length - 1)] +
@@ -46,9 +41,14 @@ export default class Utils {
     onValue(userIdRef, (snepshot) => {
       const userIdExist = snepshot.exists();
       if (userIdExist) {
-        return this.createUserId();
+        return Utils.createUserId();
       }
     });
     return userId;
-  }
-}
+  },
+  verifyPassword(passwordClient: string, passwordDb: string): boolean {
+    return bcrypt.compareSync(passwordClient, passwordDb);
+  },
+};
+
+export default Utils;

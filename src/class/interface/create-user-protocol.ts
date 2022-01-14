@@ -4,4 +4,8 @@ export default interface CreateUserProtocol {
   email: string;
   password: string;
   userId: string;
+  date: {
+    localDateString: string;
+    localTimeString: string;
+  };
 }

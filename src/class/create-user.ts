@@ -1,15 +1,11 @@
 import CreateUserProtocol from './interface/create-user-protocol';
 import bcrypt from 'bcryptjs';
 import Utils from './utils/checks-end-utils';
-interface DateProtocol {
-  localDateString: string;
-  localTimeString: string;
-}
 
 export class CreateUser implements CreateUserProtocol {
-  readonly password: string;
-  readonly userId: string;
-  public readonly date: DateProtocol;
+  public readonly password: string;
+  public readonly userId: string;
+  public readonly date;
   constructor(
     public userName: string,
     public name: string,

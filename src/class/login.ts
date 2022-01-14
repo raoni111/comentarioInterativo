@@ -1,7 +1,7 @@
+import { get, ref } from 'firebase/database';
+import { db } from '../db/connection';
 import { LoginProtocol } from './interface/login-protocol';
-import { ref, get } from 'firebase/database';
-import { db } from '../.firebase/connection';
-import bcrypt from 'bcryptjs';
+import Utils from './utils/checks-end-utils';
 
 export default class Login implements LoginProtocol {
   public logged = false;
@@ -14,7 +14,7 @@ export default class Login implements LoginProtocol {
     });
     for (const key in data) {
       if (data[key].userName === userName) {
-        if (this.verifyPassword(password, data[key].password)) {
+        if (Utils.verifyPassword(password, data[key].password)) {
           this._infoUser = {
             avatarUrl: data[key].avatarUrl,
             date: data[key].date,
@@ -22,6 +22,7 @@ export default class Login implements LoginProtocol {
             userName: data[key].userName,
             name: data[key].name,
             email: data[key].email,
+            tag: data[key].tag,
           };
           this.logged = true;
           return this.logged;
@@ -37,9 +38,5 @@ export default class Login implements LoginProtocol {
 
   get infoUser(): Readonly<unknown> {
     return this._infoUser;
-  }
-
-  verifyPassword(passwordClient: string, passwordDb: string): boolean {
-    return bcrypt.compareSync(passwordClient, passwordDb);
   }
 }
