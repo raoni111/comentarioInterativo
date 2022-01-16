@@ -10,10 +10,11 @@ export default async function logIntoAccount(): Promise<void> {
   if (!validForm(userName, password)) {
     return;
   }
+  let _logged = false;
   await login.logIn(userName.value, password.value).then((response) => {
-    login.logged = response;
+    _logged = response;
   });
-  if (!login.logged) {
+  if (!_logged) {
     Utils.displayError('nome de usuario ou senha incorreto', password);
     return;
   }

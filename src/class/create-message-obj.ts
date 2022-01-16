@@ -5,7 +5,7 @@ export default class CreateMessage implements CreateMessageProtocol {
   constructor(
     public userName: string,
     public message: string,
-    public tag?: string,
+    public tag?: string[],
   ) {
     const date = new Date();
     this.date = date.toLocaleDateString('pt-Br', { timeZone: 'UTC' });

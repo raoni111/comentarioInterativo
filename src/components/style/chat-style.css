@@ -13,7 +13,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  width: 45%;
+  width: 60%;
   height: 80%;
 }
 .chat-component .chat-content .messages-content {
@@ -36,11 +36,42 @@
   background-color: white;
   border-radius:  10px;
 }
+.chat-component .chat-content  .messages-content .message.user {
+  background-color: rgb(238, 252, 255);
+}
 .chat-component .chat-content  .messages-content .message .header-message {
   display: flex;
   justify-content: start;
   align-items: center;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1rem;
+}
+.chat-component .chat-content  .messages-content .message .header-message h1 {
+  font-size: 1.8rem;
+}
+.chat-component .chat-content  .messages-content .message .header-message .tag {
+  margin-left: 1rem;
+  padding: 0.3rem;
+  font-size: 1.3rem;
+  border-radius: 5px;
+}
+.chat-component .chat-content  .messages-content .message .header-message .tag.Dev {
+  background-color: rgba(0, 0, 129, 0.61);
+  color: white;
+}
+.chat-component .chat-content  .messages-content .message .header-message .tag.Vip {
+  background-color: rgb(255, 174, 0);
+  color:rgb(0, 0, 0);
+}
+.chat-component .chat-content  .messages-content .message .header-message .date {
+  margin-left: 1rem;
+  font-size: 1.4rem;
+  color:rgba(0, 0, 0, 0.425);
+}
+.chat-component .chat-content  .messages-content .message p {
+  padding-top: 1.5rem;
+  border-radius: 3px;
+  border-top: 1px solid rgba(0, 0, 0, 0.199);
+  font-size: 1.5rem;
 }
 .chat-component .chat-content .post-message-content {
   position: relative;
@@ -49,6 +80,7 @@
   justify-content: center;
   width: 100%;
   height: 10%;
+  padding: 1rem;
   border-radius: 10px;
   background-color: white;
 }
@@ -96,4 +128,30 @@
 }
 .chat-component .chat-content .post-message-content button:active .icon-send-message {
   transform: scale(1.2);
+}
+@media (max-width: 900px) {
+  .chat-component .chat-content  {
+    width: 70%;
+  }
+}
+@media (max-width: 920px) {
+  .chat-component .chat-content  {
+    width: 80%;
+  }
+}
+@media (max-width: 550px) {
+  .chat-component .chat-content  {
+    width: 97%;
+  }
+}
+@media (max-width: 370px) {
+  .chat-component .chat-content  .messages-content .message .header-message h1 {
+    font-size: 1.3rem;
+  }
+  .chat-component .chat-content  .messages-content .message .header-message .tag {
+    font-size: 0.8rem;
+  }
+  .chat-component .chat-content  .messages-content .message .header-message .date {
+    font-size: 1rem;
+  }
 }
