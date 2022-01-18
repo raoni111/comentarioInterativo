@@ -6,6 +6,8 @@ import getMessage from '../services/get-message';
 import sendMessage from '../services/send-message';
 import './style/chat-style.css';
 import displayMessages from './utils/display-messages';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const socket = require('socket.io-client')('http://localhost:8080');
 
 interface Props {
   user: any;
@@ -15,9 +17,15 @@ export default function Chat(props: Props): JSX.Element {
   const [message, setMessage] = useState('');
   useEffect(() => {
     updateMessages().then((response) => {
-      displayMessages(response, 'messages-content', user.userName);
+      displayMessages(response, 'messages-content');
       setWidthScroll();
     });
+    const addNewMessage = (data: any) => {
+      displayMessages(data.message, 'messages-content');
+      setWidthScroll();
+    };
+    socket.on('chat.message', addNewMessage);
+    return () => socket.off('chat.message', addNewMessage);
   }, []);
 
   async function updateMessages(): Promise<CreateMessageProtocol[]> {
@@ -45,8 +53,11 @@ export default function Chat(props: Props): JSX.Element {
     if (!message) {
       return;
     }
-    sendMessage(user, message).then((response) => {
-      displayMessages(response, 'messages-content', user.userName);
+    sendMessage(message).then((response) => {
+      //displayMessages(response, 'messages-content');
+      socket.emit('chat.message', {
+        message: response,
+      });
       setWidthScroll();
     });
     messageElement.value = '';

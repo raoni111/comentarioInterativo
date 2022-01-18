@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './assets/style/index.css';
 import App from './App';
 import './db/connection';
 import './services/get-message';

@@ -13,9 +13,7 @@ export default class Login implements LoginProtocol {
       data = response.val();
     });
     for (const key in data) {
-      console.log(data[key].userName, userName);
       if (data[key].userName === userName) {
-        console.log('teste2');
         if (Utils.verifyPassword(password, data[key].password)) {
           this._infoUser = {
             avatarUrl: data[key].avatarUrl,

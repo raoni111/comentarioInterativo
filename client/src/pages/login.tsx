@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './../assets/style/login-style.css';
+import '../assets/style/login-style.css';
 import logIntoAccount from '../services/logIntoAccount';
 
 import { HiLockClosed } from 'react-icons/hi';

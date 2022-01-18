@@ -1,5 +1,5 @@
 import CreateMessageProtocol from '../../class/interface/create-message-protocol';
-
+import lscache from 'lscache';
 function constructElement(message: CreateMessageProtocol): HTMLDivElement {
   const div = document.createElement('div');
   const div2 = document.createElement('div');
@@ -31,15 +31,15 @@ function constructElement(message: CreateMessageProtocol): HTMLDivElement {
 export default function displayMessages(
   messages: CreateMessageProtocol[] | undefined,
   componentId: string,
-  userName: string,
 ): void {
+  const user = lscache.get('user');
   if (messages) {
     const elementMessages = document.getElementById(componentId);
     if (elementMessages) {
       elementMessages.textContent = '';
       for (let i = 0; i < messages.length; i += 1) {
         const elementMessage = constructElement(messages[i]);
-        if (userName === messages[i].userName) {
+        if (user.userName === messages[i].userName) {
           elementMessage.classList.add('user');
         }
         elementMessages.appendChild(elementMessage);

@@ -5,7 +5,7 @@ import Utils from '../class/utils/checks-end-utils';
 import isEmail from 'validator/lib/isEmail';
 
 //style
-import './../assets/style/configuration.css';
+import '../assets/style/configuration.css';
 
 // icons
 import { FaUser } from 'react-icons/fa';
