@@ -1,10 +1,11 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import './db/connection';
+import Configuration from './pages/configuration';
+import ConfigurationAvar from './pages/configuration-avatar';
 import Home from './pages/home';
 import Login from './pages/login';
 import Register from './pages/register';
-import Configuration from './pages/configuration';
-import './db/connection';
 
 function App() {
   return (
@@ -22,6 +23,9 @@ function App() {
           </Route>
           <Route exact path="/configuration/">
             <Configuration />
+          </Route>
+          <Route exact path="/configuration/avatar">
+            <ConfigurationAvar />
           </Route>
         </Switch>
       </Router>

@@ -18,13 +18,11 @@ interface Props {
 
 export default function Header(props: Props): JSX.Element {
   const [closeComponent, setCloseComponent] = useState(true);
+
   function openAndCloseComponent(): void {
-    if (closeComponent) {
-      setCloseComponent(false);
-    } else {
-      setCloseComponent(true);
-    }
+    return closeComponent ? setCloseComponent(false) : setCloseComponent(true);
   }
+
   return (
     <div className="header-component">
       {!props.user ? (

@@ -1,6 +1,6 @@
-const koa = require('koa');
-const http = require('http');
-const socket = require('socket.io');
+export const koa = require('koa');
+export const http = require('http');
+export const socket = require('socket.io');
 
 const app = new koa();
 const server = http.createServer(app);

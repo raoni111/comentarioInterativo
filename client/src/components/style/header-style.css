@@ -59,6 +59,7 @@
 }
 .header-component .header-content-logged  .header-content-logged-content .avatar-content img {
   width: 35px;
+  height: 35px;
   image-orientation:flip;
   border-radius: 50%;
 }

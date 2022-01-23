@@ -1,15 +1,13 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import lscache from 'lscache';
-import Utils from '../class/utils/checks-end-utils';
-import isEmail from 'validator/lib/isEmail';
-
-//style
-import '../assets/style/configuration.css';
-
+import React, { useState } from 'react';
 // icons
 import { FaUser } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
+import { Link } from 'react-router-dom';
+import isEmail from 'validator/lib/isEmail';
+//style
+import '../assets/style/configuration.css';
+import Utils from '../class/utils/checks-end-utils';
 import setAccountInformation from '../services/setAccountInformation';
 
 export default function Configuration(): JSX.Element {
@@ -48,7 +46,8 @@ export default function Configuration(): JSX.Element {
     <div className="configuration-component" onChange={() => _setUser('')}>
       <div className="configuration-content">
         <div className="content-one">
-          <h1>Configuração</h1>
+          <a>Perfil</a>
+          <Link to={`configuration/avatar?userId=${user.userId}`}>Avatar</Link>
         </div>
         <div className="form-content">
           <div className="name-content">
