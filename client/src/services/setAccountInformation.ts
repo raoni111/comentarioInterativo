@@ -1,6 +1,6 @@
-import { set, ref } from 'firebase/database';
+import { ref, set } from 'firebase/database';
 import { db } from '../db/connection';
-import lscache from 'lscache';
+import setLocalUser from './setLocalUser';
 
 export default async function setAccountInformation(
   userId: string,
@@ -11,10 +11,4 @@ export default async function setAccountInformation(
   await set(_ref, info);
   setLocalUser(atr, info);
   document.location = '/';
-}
-function setLocalUser(atr: string, info: string): void {
-  const user = lscache.get('user');
-  user[atr] = info;
-  console.log(info);
-  lscache.set('user', user);
 }

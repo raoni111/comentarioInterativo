@@ -37,7 +37,6 @@ export default function Configuration(): JSX.Element {
       Utils.displayError('email invalido', email);
       return;
     }
-    console.log('teste');
     setAccountInformation(user.userId, 'name', name.value);
     setAccountInformation(user.userId, 'userName', userName.value);
     setAccountInformation(user.userId, 'email', email.value);
