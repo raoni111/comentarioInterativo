@@ -16,7 +16,7 @@ export default async function saveImage(
   let dawnloadUrl = '';
   if (file) {
     const storageRef = storage.ref().child('/avatar').child(fileName);
-    const storageTack = await storageRef.put(file);
+    await storageRef.put(file);
     await returnDawnloadUrl(fileName, storage).then((response) => {
       dawnloadUrl = response;
       setAccountInformation(id, db, 'avatarUrl', response);
