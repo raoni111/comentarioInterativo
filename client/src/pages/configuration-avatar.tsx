@@ -3,15 +3,17 @@ import 'firebase/compat/storage';
 import React, { useEffect, useRef, useState } from 'react';
 import { BiImageAdd } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
-import '../assets/style/configuration-avatar.css';
 import { firebaseConfig } from '../db/connection';
 import setLocalUser from '../services/setLocalUser';
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const socket = require('socket.io-client')('http://localhost:8080');
+import './assets/style/configuration-avatar.css';
 
 firebase.initializeApp(firebaseConfig);
 
-export default function ConfigurationAvar(): JSX.Element {
+interface Props {
+  readonly socket: any;
+}
+
+export default function ConfigurationAvatar(props: Props): JSX.Element {
   const inputRef = useRef<HTMLInputElement>(null);
   const [files, setFiles] = useState<FileList | null>(null);
   const [userId, setUserId] = useState<string | null>(null);
@@ -19,21 +21,21 @@ export default function ConfigurationAvar(): JSX.Element {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     setUserId(urlParams.get('userId'));
-    const $$ = (data: any) => {
+    const localSaveImage = (data: any) => {
       setLocalUser('avatarUrl', data.dawnloadUrl);
     };
-    socket.on('save.image', $$);
-    return () => socket.off('chat.message', $$);
+    props.socket.on('save.image', localSaveImage);
+    return () => props.socket.off('chat.message', localSaveImage);
   }, []);
 
   const hundleSave = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
     if (files) {
       const file = files[0];
-      console.log(file.name);
-      socket.emit('save.image', {
+      props.socket.emit('save.image', {
         userId: userId,
         file: file,
+        fileName: file.name,
       });
     }
   };

@@ -5,10 +5,10 @@ import { FaUser } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import isEmail from 'validator/lib/isEmail';
-//style
-import '../assets/style/configuration.css';
 import Utils from '../class/utils/checks-end-utils';
 import setAccountInformation from '../services/setAccountInformation';
+//style
+import './assets/style/configuration.css';
 
 export default function Configuration(): JSX.Element {
   const [user, setUser] = useState(lscache.get('user'));

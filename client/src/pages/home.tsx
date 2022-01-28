@@ -1,11 +1,15 @@
 import lscache from 'lscache';
 import React, { useEffect, useState } from 'react';
 import { GoAlert } from 'react-icons/go';
-import '../assets/style/home.css';
 import Chat from '../components/chat';
 import Header from '../components/header';
+import './assets/style/home.css';
 
-export default function Home(): JSX.Element {
+interface Props {
+  readonly socket: any;
+}
+
+export default function Home(props: Props): JSX.Element {
   const [user] = useState(lscache.get('user'));
   const [error, setError] = useState(false);
 
@@ -31,7 +35,7 @@ export default function Home(): JSX.Element {
         </div>
       </div>
       <Header user={user} />
-      <Chat user={user} />
+      <Chat user={user} socket={props.socket} />
     </div>
   );
 }

@@ -7,10 +7,10 @@ import sendMessage from '../services/send-message';
 import './style/chat-style.css';
 import displayMessages from './utils/display-messages';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const socket = require('socket.io-client')('http://localhost:8080');
 
 interface Props {
   user: any;
+  socket: any;
 }
 export default function Chat(props: Props): JSX.Element {
   const { user } = props;
@@ -24,8 +24,8 @@ export default function Chat(props: Props): JSX.Element {
       displayMessages(data.message, 'messages-content');
       setWidthScroll();
     };
-    socket.on('chat.message', addNewMessage);
-    return () => socket.off('chat.message', addNewMessage);
+    props.socket.on('chat.message', addNewMessage);
+    return () => props.socket.off('chat.message', addNewMessage);
   }, []);
 
   async function updateMessages(): Promise<CreateMessageProtocol[]> {
@@ -54,8 +54,7 @@ export default function Chat(props: Props): JSX.Element {
       return;
     }
     sendMessage(message).then((response) => {
-      //displayMessages(response, 'messages-content');
-      socket.emit('chat.message', {
+      props.socket.emit('chat.message', {
         message: response,
       });
       setWidthScroll();

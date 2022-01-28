@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { CreateUser } from '../class/create-user';
 import { PostUser } from '../class/postUser';
 import { ValidFormRegister } from '../class/valid-form-register';
-import '../assets/style/register-style.css';
+import './assets/style/register-style.css';
 
 import { HiLockClosed } from 'react-icons/hi';
 import { FaUser } from 'react-icons/fa';

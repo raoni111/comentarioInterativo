@@ -2,10 +2,13 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './db/connection';
 import Configuration from './pages/configuration';
-import ConfigurationAvar from './pages/configuration-avatar';
+import ConfigurationAvatar from './pages/configuration-avatar';
 import Home from './pages/home';
 import Login from './pages/login';
 import Register from './pages/register';
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const socket = require('socket.io-client')('http://localhost:8080');
 
 function App() {
   return (
@@ -13,7 +16,7 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/">
-            <Home />
+            <Home socket={socket} />
           </Route>
           <Route exact path="/login">
             <Login />
@@ -25,7 +28,7 @@ function App() {
             <Configuration />
           </Route>
           <Route exact path="/configuration/avatar">
-            <ConfigurationAvar />
+            <ConfigurationAvatar socket={socket} />
           </Route>
         </Switch>
       </Router>

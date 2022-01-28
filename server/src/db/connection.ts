@@ -1,6 +1,7 @@
 import firebase from 'firebase/compat/app';
-import { get, getDatabase  } from 'firebase/database';
 import 'firebase/compat/storage';
+import { getDatabase } from 'firebase/database';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 require('dotenv').config();
 
 const _apiKey = process.env.APIKEY;
