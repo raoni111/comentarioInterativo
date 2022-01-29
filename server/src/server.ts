@@ -2,7 +2,8 @@
 import express from 'express';
 import { db, storage } from './db/connection';
 import './db/connection.ts';
-import saveImage from './services/saveImage';
+import saveImage from './modules/save-image';
+import { saveUser } from './modules/save-user';
 
 export const http = require('http');
 export const socket = require('socket.io');
@@ -29,6 +30,13 @@ io.on('connection', (socket: any) => {
     );
     socket.emit('save.image', {
       dawnloadUrl,
+    });
+  });
+  socket.on('set.user', async (data: any): Promise<void> => {
+    await saveUser(db, data).then(() => {
+      socket.emit('set.user.success', {
+        success: true,
+      });
     });
   });
 });

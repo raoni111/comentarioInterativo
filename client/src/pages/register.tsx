@@ -1,14 +1,25 @@
-import React, { useState } from 'react';
-import { CreateUser } from '../class/create-user';
-import { PostUser } from '../class/postUser';
+import React, { useEffect, useState } from 'react';
+import { FaUser } from 'react-icons/fa';
+import { HiLockClosed } from 'react-icons/hi';
+import { MdEmail } from 'react-icons/md';
 import { ValidFormRegister } from '../class/valid-form-register';
 import './assets/style/register-style.css';
 
-import { HiLockClosed } from 'react-icons/hi';
-import { FaUser } from 'react-icons/fa';
-import { MdEmail } from 'react-icons/md';
-export default function Register(): JSX.Element {
+interface Props {
+  readonly socket: any;
+}
+
+export default function Register(props: Props): JSX.Element {
   const [inputIsVisible, setInputIsVisible] = useState(false);
+
+  useEffect(() => {
+    props.socket.on('set.user.success', () => {
+      document.location = '/login';
+    });
+    return props.socket.off('set.user.success', () => {
+      document.location = '/login';
+    });
+  }, []);
 
   async function validForm(
     userName: HTMLInputElement,
@@ -31,31 +42,29 @@ export default function Register(): JSX.Element {
     return formIsValid;
   }
   async function createAnAccount(): Promise<void> {
-    const userName = document.getElementById('name-user') as HTMLInputElement;
-    const name = document.getElementById('name') as HTMLInputElement;
-    const email = document.getElementById('email') as HTMLInputElement;
-    const password = document.getElementById('password') as HTMLInputElement;
-    const passwordTwo = document.getElementById(
-      'password-two',
-    ) as HTMLInputElement;
-    let _continue = false;
-    await validForm(userName, name, email, password, passwordTwo).then(
-      (response) => {
+    const form = document.getElementById('form-content');
+    if (form) {
+      const inputs = form.querySelectorAll('input');
+      let _continue = false;
+      await validForm(
+        inputs[0],
+        inputs[1],
+        inputs[2],
+        inputs[3],
+        inputs[4],
+      ).then((response) => {
         _continue = response;
-      },
-    );
-    if (!_continue) {
-      return;
+      });
+      if (!_continue) {
+        return;
+      }
+      props.socket.emit('set.user', {
+        userName: inputs[0].value,
+        name: inputs[1].value,
+        email: inputs[2].value,
+        password: inputs[3].value,
+      });
     }
-    const user = new CreateUser(
-      userName.value,
-      name.value,
-      email.value,
-      password.value,
-    );
-    const postUser = new PostUser(user);
-    postUser.post();
-    document.location = '/login';
   }
   function inputVisibility(checkElement: HTMLInputElement): void {
     const boolean = checkElement.checked;
@@ -67,7 +76,7 @@ export default function Register(): JSX.Element {
         <div className="header-login-content">
           <h1>Registre-se</h1>
         </div>
-        <div className="form">
+        <div className="form" id="form-content">
           <div className="user-name-content">
             <div>
               <FaUser size="15" />

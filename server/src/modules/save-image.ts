@@ -2,7 +2,7 @@ import firebase from 'firebase/compat/app';
 import { Database } from 'firebase/database';
 import { getDownloadURL } from 'firebase/storage';
 import { firebaseConfig } from '../db/connection';
-import setAccountInformation from './setAccountInformation';
+import setAccountInformation from './set-account-Information';
 
 firebase.initializeApp(firebaseConfig);
 

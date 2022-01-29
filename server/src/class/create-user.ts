@@ -1,6 +1,7 @@
 import bcrypt from 'bcryptjs';
+import { Database } from 'firebase/database';
 import CreateUserProtocol from './interface/create-user-protocol';
-import Utils from './utils/checks-end-utils';
+import { createUserId } from './utils/create-user-id';
 
 export class CreateUser implements CreateUserProtocol {
   public readonly password: string;
@@ -16,7 +17,7 @@ export class CreateUser implements CreateUserProtocol {
   ) {
     const salt = bcrypt.genSaltSync(10);
     const data = new Date();
-    this.userId = Utils.createUserId();
+    this.userId = createUserId();
     this.password = bcrypt.hashSync(password, salt);
     this.date = {
       localDateString: data.toLocaleDateString('pt-BR', { timeZone: 'UTC' }),

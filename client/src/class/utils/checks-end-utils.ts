@@ -1,6 +1,4 @@
 import bcrypt from 'bcryptjs';
-import { onValue, ref } from 'firebase/database';
-import { db } from '../../db/connection';
 
 const Utils = {
   validLength(name: string): boolean {
@@ -25,26 +23,6 @@ const Utils = {
     setTimeout(() => {
       parentTwo.removeChild(p);
     }, 2000);
-  },
-  randomNumber(min: number, max: number): number {
-    return Math.floor(Math.random() * (max - min) + min);
-  },
-  createUserId(): string {
-    const caracteres = `1234567890QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm`;
-    const userId =
-      caracteres[Utils.randomNumber(0, caracteres.length - 1)] +
-      caracteres[Utils.randomNumber(0, caracteres.length - 1)] +
-      caracteres[Utils.randomNumber(0, caracteres.length - 1)] +
-      caracteres[Utils.randomNumber(0, caracteres.length - 1)] +
-      caracteres[Utils.randomNumber(0, caracteres.length - 1)];
-    const userIdRef = ref(db, 'users/' + userId);
-    onValue(userIdRef, (snepshot) => {
-      const userIdExist = snepshot.exists();
-      if (userIdExist) {
-        return Utils.createUserId();
-      }
-    });
-    return userId;
   },
   verifyPassword(passwordClient: string, passwordDb: string): boolean {
     return bcrypt.compareSync(passwordClient, passwordDb);
