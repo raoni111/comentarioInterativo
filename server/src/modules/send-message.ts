@@ -1,19 +1,18 @@
 import CreateMessage from '../class/create-message-obj';
 import CreateMessageProtocol from '../class/interface/create-message-protocol';
-import getMessage from './get-message';
-import setMessage from './set-message';
-import lscache from 'lscache';
+import getMessage from '../service/get-message';
+import setMessage from '../service/set-message';
 
 export default async function sendMessage(
   message: string,
+  user: any,
 ): Promise<CreateMessageProtocol[]> {
-  const user = lscache.get('user');
   const _message = new CreateMessage(
     user.userName,
     message,
     !user.tag ? '' : user.tag,
   );
-  let messages: Array<CreateMessageProtocol> = [];
+  let messages: CreateMessageProtocol[] = [];
   await getMessage().then((response) => {
     messages = response;
   });

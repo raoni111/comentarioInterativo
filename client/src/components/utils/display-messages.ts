@@ -1,5 +1,5 @@
 import lscache from 'lscache';
-import CreateMessageProtocol from '../../class/interface/create-message-protocol';
+import CreateMessageProtocol from '../../class/interface/message-protocol';
 
 function createElement(
   _element: string,

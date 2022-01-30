@@ -1,9 +1,9 @@
 /* eslint-disable react/jsx-key */
+import { executionAsyncResource } from 'async_hooks';
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { IoSend } from 'react-icons/io5';
-import CreateMessageProtocol from '../class/interface/create-message-protocol';
-import getMessage from '../services/get-message';
-import sendMessage from '../services/send-message';
+import MessageProtocol from '../class/interface/message-protocol';
 import './style/chat-style.css';
 import displayMessages from './utils/display-messages';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -21,18 +21,22 @@ export default function Chat(props: Props): JSX.Element {
       setWidthScroll();
     });
     const addNewMessage = (data: any) => {
-      displayMessages(data.message, 'messages-content');
+      displayMessages(data, 'messages-content');
       setWidthScroll();
     };
     props.socket.on('chat.message', addNewMessage);
     return () => props.socket.off('chat.message', addNewMessage);
   }, []);
 
-  async function updateMessages(): Promise<CreateMessageProtocol[]> {
-    let messages: CreateMessageProtocol[] = [];
-    await getMessage().then((response) => {
-      messages = response;
-    });
+  async function updateMessages(): Promise<MessageProtocol[]> {
+    let messages: MessageProtocol[] = [];
+    await axios
+      .get('http://localhost:8080/get/message')
+      .then((response: MessageProtocol[] | any) => {
+        if (response.data) {
+          messages = response.data;
+        }
+      });
     return messages;
   }
 
@@ -53,11 +57,9 @@ export default function Chat(props: Props): JSX.Element {
     if (!message) {
       return;
     }
-    sendMessage(message).then((response) => {
-      props.socket.emit('chat.message', {
-        message: response,
-      });
-      setWidthScroll();
+    props.socket.emit('chat.message', {
+      message: message,
+      user,
     });
     messageElement.value = '';
     return;
