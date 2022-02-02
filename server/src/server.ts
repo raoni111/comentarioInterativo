@@ -29,13 +29,13 @@ app.use(router);
 
 io.on('connection', (socket: any) => {
   console.log('[io connection] => o servidor recebou um nova conexão ');
-  socket.on('chat.message', async (data: any) => {
+  socket.on('chat.message', async (data: any): Promise<void> => {
     await sendMessage(data.message, data.user).then((response) => {
       io.emit('chat.message', response);
     });
   });
 
-  socket.on('save.image', async (data: any) => {
+  socket.on('save.image', async (data: any): Promise<void> => {
     let dawnloadUrl = '';
     await saveImage(data.fileName, data.file, db, data.userId, storage).then(
       (response) => {

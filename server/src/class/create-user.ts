@@ -1,5 +1,4 @@
 import bcrypt from 'bcryptjs';
-import { Database } from 'firebase/database';
 import CreateUserProtocol from './interface/create-user-protocol';
 import { createUserId } from './utils/create-user-id';
 
