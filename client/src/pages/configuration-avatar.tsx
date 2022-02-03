@@ -3,6 +3,7 @@ import 'firebase/compat/storage';
 import React, { useEffect, useRef, useState } from 'react';
 import { BiImageAdd } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
+import lscache from 'lscache';
 import { firebaseConfig } from '../db/connection';
 import setLocalUser from '../services/setLocalUser';
 import './assets/style/configuration-avatar.css';
@@ -16,11 +17,10 @@ interface Props {
 export default function ConfigurationAvatar(props: Props): JSX.Element {
   const inputRef = useRef<HTMLInputElement>(null);
   const [files, setFiles] = useState<FileList | null>(null);
-  const [userId, setUserId] = useState<string | null>(null);
-
+  const [user] = useState(lscache.get('user'));
+  const [avatarUrl, setAvatarUrl] = useState(user.avatarUrl);
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    setUserId(urlParams.get('userId'));
+    console.log(user.userId);
     const localSaveImage = (data: any) => {
       setLocalUser('avatarUrl', data.dawnloadUrl);
     };
@@ -33,15 +33,31 @@ export default function ConfigurationAvatar(props: Props): JSX.Element {
     if (files) {
       const file = files[0];
       props.socket.emit('save.image', {
-        userId: userId,
+        userId: user.userId,
         file: file,
         fileName: file.name,
       });
     }
   };
 
-  function hundleChange(files: FileList | null) {
+  function hundleChange(files: FileList | null, e: any) {
     setFiles(files);
+    setLocalAvatarUrl(e);
+  }
+  function setLocalAvatarUrl(evt: any) {
+    const files = evt.target.files;
+    for (let i = 0, f; (f = files[i]); i++) {
+      if (!f.type.match('image.*')) {
+        continue;
+      }
+      const reader = new FileReader();
+      reader.onload = (function (theFile) {
+        return function (e) {
+          setAvatarUrl(e.target?.result);
+        };
+      })(f);
+      reader.readAsDataURL(f);
+    }
   }
 
   return (
@@ -57,8 +73,11 @@ export default function ConfigurationAvatar(props: Props): JSX.Element {
               Escolha um imagem para o seu avatar
             </label>
             <div>
-              <label htmlFor="input-file">
-                <BiImageAdd size="40" />
+              <label htmlFor="input-file" className="label-avatar-content">
+                <div className="avatar-content">
+                  <img src={avatarUrl} alt="" />
+                  <BiImageAdd className="biImageAdd" size="40" />
+                </div>
               </label>
               <input
                 type="file"
@@ -66,7 +85,7 @@ export default function ConfigurationAvatar(props: Props): JSX.Element {
                 id="input-file"
                 ref={inputRef}
                 accept="image/png, image/jpeg"
-                onChange={(e) => hundleChange(e.target.files)}
+                onChange={(e) => hundleChange(e.target.files, e)}
               />
             </div>
           </div>
