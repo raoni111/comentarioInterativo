@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import './db/connection';
 import Configuration from './pages/configuration';
 import ConfigurationAvatar from './pages/configuration-avatar';
 import Home from './pages/home';

@@ -26,9 +26,21 @@ router.get('/user/exists', (req, res) => {
   });
 });
 
-router.get('user/set/information', (req, res) => {
+router.get('/user/set/information', async (req, res) => {
   const { userId, atr, info } = req.query;
-  setAccountInformation(userId, atr, info);
+  await setAccountInformation(userId, atr, info)
+    .then(() => {
+      res.status(200).json({
+        error: false,
+        userId,
+        atr,
+        info,
+      });
+      return;
+    })
+    .catch((error) => {
+      res.send(error);
+    });
 });
 
 export default router;
