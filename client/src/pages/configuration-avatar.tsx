@@ -1,14 +1,10 @@
-import firebase from 'firebase/compat/app';
 import 'firebase/compat/storage';
 import React, { useEffect, useRef, useState } from 'react';
 import { BiImageAdd } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
 import lscache from 'lscache';
-import { firebaseConfig } from '../db/connection';
 import setLocalUser from '../services/setLocalUser';
 import './assets/style/configuration-avatar.css';
-
-firebase.initializeApp(firebaseConfig);
 
 interface Props {
   readonly socket: any;

@@ -1,5 +1,4 @@
-import { ref, set } from 'firebase/database';
-import { db } from '../db/connection';
+import axios from 'axios';
 import setLocalUser from './setLocalUser';
 
 export default async function setAccountInformation(
@@ -7,8 +6,9 @@ export default async function setAccountInformation(
   atr: string,
   info: string,
 ): Promise<void> {
-  const _ref = ref(db, `users/${userId}/${atr}`);
-  await set(_ref, info);
+  await axios.get(
+    `http://localhost:8080/user/set/information?userId=${userId}&atr=${atr}&info=${info}`,
+  );
   setLocalUser(atr, info);
   document.location = '/';
 }

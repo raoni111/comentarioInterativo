@@ -10,8 +10,15 @@ export default class ValidFormLogin implements ValidFormLoginProtocol {
   checkout(): boolean {
     if (!Utils.validLength(this.userName.value)) {
       Utils.displayError(
-        'nome de usuario precisa ter no minimo 8 caracteres',
+        'Nome de usuario precisa ter no minimo 8 caracteres',
         this.userName,
+      );
+      this.errors++;
+    }
+    if (!Utils.validLength(this.password.value)) {
+      Utils.displayError(
+        'senha precisa ter no minimo 8 caracteres',
+        this.password,
       );
       this.errors++;
     }

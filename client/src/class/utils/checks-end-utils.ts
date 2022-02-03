@@ -1,5 +1,3 @@
-import bcrypt from 'bcryptjs';
-
 const Utils = {
   validLength(name: string): boolean {
     return name.length < 8 ? false : true;
@@ -23,9 +21,6 @@ const Utils = {
     setTimeout(() => {
       parentTwo.removeChild(p);
     }, 2000);
-  },
-  verifyPassword(passwordClient: string, passwordDb: string): boolean {
-    return bcrypt.compareSync(passwordClient, passwordDb);
   },
 };
 

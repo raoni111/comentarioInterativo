@@ -19,7 +19,7 @@ export default async function saveImage(
     await storageRef.put(file);
     await returnDawnloadUrl(fileName, storage).then((response) => {
       dawnloadUrl = response;
-      setAccountInformation(id, db, 'avatarUrl', response);
+      setAccountInformation(id, 'avatarUrl', response);
     });
   }
   return dawnloadUrl;

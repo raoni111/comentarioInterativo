@@ -1,24 +1,33 @@
 import lscache from 'lscache';
-import Login from '../class/login';
+import axios from 'axios';
 import Utils from '../class/utils/checks-end-utils';
 import validForm from '../class/utils/validForm';
 
 export default async function logIntoAccount(): Promise<void> {
-  const userName = document.getElementById('name-user') as HTMLInputElement;
-  const password = document.getElementById('password') as HTMLInputElement;
-  const login = new Login();
-  if (!validForm(userName, password)) {
+  const userNameElement = document.getElementById(
+    'name-user',
+  ) as HTMLInputElement;
+  const passwordElement = document.getElementById(
+    'password',
+  ) as HTMLInputElement;
+  if (!validForm(userNameElement, passwordElement)) {
     return;
   }
-  let _logged = false;
-  await login.logIn(userName.value, password.value).then((response) => {
-    _logged = response;
-  });
-  if (!_logged) {
-    Utils.displayError('nome de usuario ou senha incorreto', password);
-    return;
-  }
-  // 10080
-  lscache.set('user', login.infoUser, 30);
-  document.location = '/';
+  const userName = userNameElement.value;
+  const password = passwordElement.value;
+  await axios
+    .get(
+      `http://localhost:8080/user/login?userName=${userName}&password=${password}`,
+    )
+    .then((response) => {
+      if (response.data.error) {
+        Utils.displayError(
+          'nome de usuario ou senha incorreto',
+          passwordElement,
+        );
+        return;
+      }
+      lscache.set('user', response.data.user, 30);
+      document.location = '/';
+    });
 }

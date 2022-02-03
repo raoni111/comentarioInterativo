@@ -1,10 +1,10 @@
-import { Database, ref, set } from 'firebase/database';
+import { db } from '../db/connection';
+import { ref, set } from 'firebase/database';
 
 export default async function setAccountInformation(
-  userId: string,
-  db: Database,
-  atr: string,
-  info: string,
+  userId: any,
+  atr: any,
+  info: any,
 ): Promise<void> {
   const _ref = ref(db, `users/${userId}/${atr}`);
   await set(_ref, info);

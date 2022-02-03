@@ -1,12 +1,9 @@
 import { ValidFormProtocol } from './interface/valid-form-protocol';
 import isEmail from 'validator/lib/isEmail';
 
-// firebase
-import { get, ref } from 'firebase/database';
-import { db } from '../db/connection';
-
 // utils
 import Utils from './utils/checks-end-utils';
+import axios from 'axios';
 
 export class ValidFormRegister implements ValidFormProtocol {
   protected errors = 0;
@@ -51,15 +48,14 @@ export class ValidFormRegister implements ValidFormProtocol {
     return this.errors > 0 ? false : true;
   }
   async userExists(user: HTMLInputElement): Promise<void> {
-    const userRef = ref(db, 'users/');
-    await get(userRef).then((response) => {
-      const users = response.val();
-      for (const kay in users) {
-        if (user.value === users[kay].userName) {
+    const userName = user.value;
+    await axios
+      .get(`http://localhost:8080/user/exists?userName=${userName}`)
+      .then((response) => {
+        if (response.data.exists) {
           Utils.displayError('nome de usuario ja existe', user);
           this.errors++;
         }
-      }
-    });
+      });
   }
 }
