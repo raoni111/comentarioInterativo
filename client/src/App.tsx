@@ -21,7 +21,7 @@ function App() {
             <Login />
           </Route>
           <Route exact path="/register">
-            <Register socket={socket} />
+            <Register />
           </Route>
           <Route exact path="/configuration/">
             <Configuration />

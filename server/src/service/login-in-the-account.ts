@@ -5,12 +5,11 @@ export async function loginInTheAccount(
   password: any,
 ): Promise<any> {
   const login = new Login();
-  let _logged = false;
   let error = false;
   await login.logIn(userName, password).then((response) => {
-    _logged = response;
+    login.logged = response;
   });
-  if (!_logged) {
+  if (!login.logged) {
     error = true;
     return { error };
   }

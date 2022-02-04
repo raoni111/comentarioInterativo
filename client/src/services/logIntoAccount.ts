@@ -3,6 +3,8 @@ import axios from 'axios';
 import Utils from '../class/utils/checks-end-utils';
 import validForm from '../class/utils/validForm';
 
+const apiKey = process.env.REACT_APP_MYAPIKEY;
+
 export default async function logIntoAccount(): Promise<void> {
   const userNameElement = document.getElementById(
     'name-user',
@@ -17,7 +19,7 @@ export default async function logIntoAccount(): Promise<void> {
   const password = passwordElement.value;
   await axios
     .get(
-      `http://localhost:8080/user/login?userName=${userName}&password=${password}`,
+      `http://localhost:8080/user/login?userName=${userName}&password=${password}&apiKey=${apiKey}`,
     )
     .then((response) => {
       if (response.data.error) {

@@ -16,7 +16,6 @@ export default function ConfigurationAvatar(props: Props): JSX.Element {
   const [user] = useState(lscache.get('user'));
   const [avatarUrl, setAvatarUrl] = useState(user.avatarUrl);
   useEffect(() => {
-    console.log(user.userId);
     const localSaveImage = (data: any) => {
       setLocalUser('avatarUrl', data.dawnloadUrl);
     };

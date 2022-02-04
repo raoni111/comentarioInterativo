@@ -1,12 +1,11 @@
-/* eslint-disable react/jsx-key */
-import { executionAsyncResource } from 'async_hooks';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { IoSend } from 'react-icons/io5';
 import MessageProtocol from '../class/interface/message-protocol';
 import './style/chat-style.css';
 import displayMessages from './utils/display-messages';
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+
+const apiKey = process.env.REACT_APP_MYAPIKEY;
 
 interface Props {
   user: any;
@@ -31,7 +30,7 @@ export default function Chat(props: Props): JSX.Element {
   async function updateMessages(): Promise<MessageProtocol[]> {
     let messages: MessageProtocol[] = [];
     await axios
-      .get('http://localhost:8080/get/message')
+      .get(`http://localhost:8080/get/message?apiKey=${apiKey}`)
       .then((response: MessageProtocol[] | any) => {
         if (response.data) {
           messages = response.data;

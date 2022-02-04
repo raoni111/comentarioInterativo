@@ -5,6 +5,8 @@ import isEmail from 'validator/lib/isEmail';
 import Utils from './utils/checks-end-utils';
 import axios from 'axios';
 
+const apiKey = process.env.REACT_APP_MYAPIKEY;
+
 export class ValidFormRegister implements ValidFormProtocol {
   protected errors = 0;
   constructor(
@@ -50,7 +52,9 @@ export class ValidFormRegister implements ValidFormProtocol {
   async userExists(user: HTMLInputElement): Promise<void> {
     const userName = user.value;
     await axios
-      .get(`http://localhost:8080/user/exists?userName=${userName}`)
+      .get(
+        `http://localhost:8080/user/exists?userName=${userName}&apiKey=${apiKey}`,
+      )
       .then((response) => {
         if (response.data.exists) {
           Utils.displayError('nome de usuario ja existe', user);

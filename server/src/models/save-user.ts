@@ -1,7 +1,8 @@
-import { Database, ref, set } from 'firebase/database';
+import { ref, set } from 'firebase/database';
 import { CreateUser } from '../class/create-user';
+import { db } from '../db/connection';
 
-export const saveUser = async (db: Database, data: any): Promise<void> => {
+export const saveUser = async (data: any): Promise<void> => {
   const user = new CreateUser(
     data.userName,
     data.name,

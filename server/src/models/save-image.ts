@@ -1,5 +1,4 @@
 import firebase from 'firebase/compat/app';
-import { Database } from 'firebase/database';
 import { getDownloadURL } from 'firebase/storage';
 import { firebaseConfig } from '../db/connection';
 import setAccountInformation from './set-account-Information';
@@ -9,7 +8,6 @@ firebase.initializeApp(firebaseConfig);
 export default async function saveImage(
   fileName: string,
   file: any,
-  db: Database,
   id: string,
   storage: firebase.storage.Storage,
 ): Promise<string> {

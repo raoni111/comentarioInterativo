@@ -1,7 +1,7 @@
 import CreateMessage from '../class/create-message-obj';
 import CreateMessageProtocol from '../class/interface/create-message-protocol';
-import getMessage from '../service/get-message';
-import setMessage from '../service/set-message';
+import getMessage from '../models/get-message';
+import setMessage from '../models/set-message';
 
 export default async function sendMessage(
   message: string,

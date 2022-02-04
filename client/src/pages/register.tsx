@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { FaUser } from 'react-icons/fa';
 import { HiLockClosed } from 'react-icons/hi';
@@ -5,21 +6,10 @@ import { MdEmail } from 'react-icons/md';
 import { ValidFormRegister } from '../class/valid-form-register';
 import './assets/style/register-style.css';
 
-interface Props {
-  readonly socket: any;
-}
+const apiKey = process.env.REACT_APP_MYAPIKEY;
 
-export default function Register(props: Props): JSX.Element {
+export default function Register(): JSX.Element {
   const [inputIsVisible, setInputIsVisible] = useState(false);
-
-  useEffect(() => {
-    props.socket.on('set.user.success', () => {
-      document.location = '/login';
-    });
-    return props.socket.off('set.user.success', () => {
-      document.location = '/login';
-    });
-  }, []);
 
   async function validForm(
     userName: HTMLInputElement,
@@ -58,12 +48,13 @@ export default function Register(props: Props): JSX.Element {
       if (!_continue) {
         return;
       }
-      props.socket.emit('set.user', {
+      axios.post(`http://localhost:8080/user/post/user?apiKey=${apiKey}`, {
         userName: inputs[0].value,
         name: inputs[1].value,
         email: inputs[2].value,
         password: inputs[3].value,
       });
+      document.location = '/login';
     }
   }
   function inputVisibility(checkElement: HTMLInputElement): void {
