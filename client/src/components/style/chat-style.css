@@ -41,31 +41,47 @@
 }
 .chat-component .chat-content  .messages-content .message .header-message {
   display: flex;
-  justify-content: start;
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
 }
-.chat-component .chat-content  .messages-content .message .header-message h1 {
+.chat-component .chat-content  .messages-content .message .header-message .header-content-one {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+.chat-component .chat-content  .messages-content .message .header-message .header-content-one h1 {
   font-size: 1.8rem;
 }
-.chat-component .chat-content  .messages-content .message .header-message .tag {
+.chat-component .chat-content  .messages-content .message .header-message .header-content-one .tag {
   margin-left: 1rem;
   padding: 0.3rem;
   font-size: 1.3rem;
   border-radius: 5px;
 }
-.chat-component .chat-content  .messages-content .message .header-message .tag.Dev {
+.chat-component .chat-content  .messages-content .message .header-message .header-content-one .tag.Dev {
   background-color: rgba(0, 0, 129, 0.61);
   color: white;
 }
-.chat-component .chat-content  .messages-content .message .header-message .tag.Vip {
+.chat-component .chat-content  .messages-content .message .header-message .header-content-one .tag.Vip {
   background-color: rgb(255, 174, 0);
   color:rgb(0, 0, 0);
 }
-.chat-component .chat-content  .messages-content .message .header-message .date {
+.chat-component .chat-content  .messages-content .message .header-message .header-content-one .date {
   margin-left: 1rem;
   font-size: 1.4rem;
   color:rgba(0, 0, 0, 0.425);
+}
+.chat-component .chat-content  .messages-content .message .header-message .delet-button-content button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1rem;
+  font-size: 1.3rem;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  color: red;
 }
 .chat-component .chat-content  .messages-content .message p {
   padding-top: 1.5rem;

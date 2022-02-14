@@ -9,6 +9,7 @@ import userLoginController from './controllers/user-login-controller';
 import userExistsController from './controllers/user-exists-controller';
 import userSetInfomationController from './controllers/user-set-intormation-controller';
 import userPostController from './controllers/user-post-controller';
+import deleteMessageController from './controllers/delete-message-controller';
 
 const router = express.Router();
 
@@ -16,6 +17,11 @@ const router = express.Router();
 router.get('/get/message', middleware.apiKayVerification, getMessageController);
 router.get('/user/login', middleware.apiKayVerification, userLoginController);
 router.get('/user/exists', middleware.apiKayVerification, userExistsController);
+router.get(
+  '/delete/message',
+  middleware.apiKayVerification,
+  deleteMessageController,
+);
 router.get(
   '/user/set/information',
   middleware.apiKayVerification,

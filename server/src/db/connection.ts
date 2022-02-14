@@ -23,7 +23,6 @@ export const firebaseConfig = {
   appId: _appId,
   measurementId: _measurementId,
 };
-
 const app = firebase.initializeApp(firebaseConfig);
 
 export const db = getDatabase(app);

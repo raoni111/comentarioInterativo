@@ -33,7 +33,7 @@ app.use((req, res, next) => {
 app.use(router);
 
 io.on('connection', (socket: any) => {
-  console.log('[io connection] => o servidor recebou um nova conexão ');
+  console.log('[io connection] => o servidor recebou uma nova conexão ');
   // CHAT
   socket.on('chat.message', async (data: any): Promise<void> => {
     await sendMessage(data.message, data.user).then((response) => {
