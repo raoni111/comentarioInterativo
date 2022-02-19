@@ -1,11 +1,11 @@
 /* eslint-disable react/jsx-key */
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { IoSend } from 'react-icons/io5';
 import { MdDeleteForever } from 'react-icons/md';
 import MessageProtocol from '../class/interface/message-protocol';
 import './style/chat-style.css';
 import deleteMessage from './utils/delete-message';
+import updateMessages from './utils/update-message';
 
 const apiKey = process.env.REACT_APP_MYAPIKEY;
 
@@ -19,6 +19,9 @@ export default function Chat(props: Props): JSX.Element {
   const [messages, setMessages] = useState<MessageProtocol[]>();
 
   useEffect(() => {
+    if (!user) {
+      return;
+    }
     updateMessages().then((response) => {
       setMessages(response);
       setWidthScroll();
@@ -32,56 +35,42 @@ export default function Chat(props: Props): JSX.Element {
   }, []);
 
   const MessagesElement = (): JSX.Element[] => {
-    if (messages) {
-      return messages?.map((message, index) => (
-        <div className={'message ' + index}>
-          <div className="header-message">
-            <div className="header-content-one">
-              <h1>{message.userName}</h1>
-              {message.tag
-                ? message.tag.map((value) => (
-                    <h1 className={'tag ' + value}>{value}</h1>
-                  ))
-                : ''}
-              <h1 className="date">{message.date}</h1>
-            </div>
-            {message.userName === user.userName ? (
-              <div className="delet-button-content">
-                <button
-                  id={`${index}`}
-                  className="delet-button"
-                  onClick={() => hundleClick(index)}
-                >
-                  <MdDeleteForever size="20" />
-                </button>
-              </div>
-            ) : (
-              ''
-            )}
-          </div>
-          <p>{message.message}</p>
-        </div>
-      ));
+    if (!messages) {
+      return [];
     }
-    return [];
+    return messages.map((message, index) => (
+      <div className={'message ' + index}>
+        <div className="header-message">
+          <div className="header-content-one">
+            <h1>{message.userName ? message.userName : ''}</h1>
+            {message.tag
+              ? message.tag.map((value) => (
+                  <h1 className={'tag ' + value}>{value}</h1>
+                ))
+              : ''}
+            <h1 className="date">{message.date}</h1>
+          </div>
+          {message.userName === user.userName ? (
+            <div className="delet-button-content">
+              <button
+                id={`${index}`}
+                className="delet-button"
+                onClick={() => hundleClick(index)}
+              >
+                <MdDeleteForever size="20" />
+              </button>
+            </div>
+          ) : (
+            ''
+          )}
+        </div>
+        <p>{message.message}</p>
+      </div>
+    ));
   };
 
   async function hundleClick(index: number): Promise<void> {
-    await deleteMessage(index).then((response) => {
-      setMessages(response);
-    });
-  }
-
-  async function updateMessages(): Promise<MessageProtocol[]> {
-    let messages: MessageProtocol[] = [];
-    await axios
-      .get(`http://localhost:8080/get/message?apiKey=${apiKey}`)
-      .then((response: MessageProtocol[] | any) => {
-        if (response.data) {
-          messages = response.data;
-        }
-      });
-    return messages;
+    await deleteMessage(index, props.socket);
   }
 
   function setWidthScroll(): void {

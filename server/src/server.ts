@@ -6,6 +6,7 @@ import './db/connection.ts';
 import saveImage from './models/save-image';
 import sendMessage from './service/send-message';
 import router from './router';
+import deleteMessage from './models/delete-message';
 
 export const http = require('http');
 export const socket = require('socket.io');
@@ -19,7 +20,7 @@ const SERVER_HOST = 'localhost';
 
 // CORS
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT');
   res.setHeader(
@@ -39,6 +40,18 @@ io.on('connection', (socket: any) => {
     await sendMessage(data.message, data.user).then((response) => {
       io.emit('chat.message', response);
     });
+  });
+
+  // DELETAR MESSAGEM
+  socket.on('chat.delet.message', async (data: any): Promise<void> => {
+    const index = data.index;
+    await deleteMessage(index)
+      .then((response) => {
+        io.emit('chat.message', response);
+      })
+      .catch(() => {
+        io.imit('chat.message', []);
+      });
   });
 
   // SALVAR IMAGEM
