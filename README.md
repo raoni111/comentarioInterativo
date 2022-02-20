@@ -1,14 +1,21 @@
 <div align="start">
   <div>
-    <h1>Comentario interativo</h1>
+    <h1 align="center">Comentario interativo</h1>
+    <h3>Info</h3
     <p>comentário interativo e um projeto de chat, tendo algum sistemas como por exemplo:</br>
       -- sistema de login/registro de conta</br>
       -- chat</br>
       -- personalização de perfil</br>
       -- sistema de tags passível de upgrades</br>
     </p>
+     <h3>linguagem/framework/stilo</h3>
+     <p>-- Framework: React</br>
+        -- Linguagems: Typescript/TSX/</br>
+        -- Stilo: CSS</br>
+        -- menção honrosa: React-icons</br
+     </p>
   </div>
-  <h3>Assista o video do projeto: https://youtu.be/77X_Mjn7vVc</h3>
+  <h3>Assista o vídeo do projeto: https://youtu.be/77X_Mjn7vVc</h3>
   <section>
     <h1 align="center">Prints</h1>
     <ul list-style="none">
