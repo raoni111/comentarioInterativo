@@ -10,7 +10,7 @@
     </p>
      <h3>linguagem/framework/stilo</h3>
      <p>-- Framework: React</br>
-        -- Linguagems: Typescript/TSX/</br>
+        -- Linguagems: Javascript/Typescript/Node.JS</br>
         -- Stilo: CSS</br>
         -- menção honrosa: React-icons</br
      </p>
